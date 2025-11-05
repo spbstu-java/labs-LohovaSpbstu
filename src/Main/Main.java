@@ -16,36 +16,44 @@ public class Main {
             System.out.println("0 - выход");
             System.out.println("Ведите цифру: ");
 
-            String input = System.console().readLine();
-            int choice = Integer.parseInt(input);
+            try {
+                String input = System.console().readLine();
+                int choice = Integer.parseInt(input);
 
-            if (choice == 0) break;
+                if (choice == 0) break;
 
-            switch(choice) {
-                case 1:
-                    hero.setMoving(new OnFootMove());
-                    System.out.println("Вы выбрали движение: пешком");
-                    break;
-                case 2:
-                    hero.setMoving(new HorseMove());
-                    System.out.println("Вы выбрали движение: на лошади");
-                    break;
-                case 3:
-                    hero.setMoving(new CarMove());
-                    System.out.println("Вы выбрали движение: на машине");
-                    break;
-                case 4:
-                    hero.setMoving(new FlightMove());
-                    System.out.println("Вы выбрали движение: лететь");
-                    break;
-                default:
-                    hero.setMoving(new OnFootMove());
-                    System.out.println("Движение по умолчанию: пешком");
+                switch (choice) {
+                    case 1:
+                        hero.setMoving(new OnFootMove());
+                        System.out.println("Вы выбрали движение: пешком");
+                        break;
+                    case 2:
+                        hero.setMoving(new HorseMove());
+                        System.out.println("Вы выбрали движение: на лошади");
+                        break;
+                    case 3:
+                        hero.setMoving(new CarMove());
+                        System.out.println("Вы выбрали движение: на машине");
+                        break;
+                    case 4:
+                        hero.setMoving(new FlightMove());
+                        System.out.println("Вы выбрали движение: лететь");
+                        break;
+                    default:
+                        hero.setMoving(new OnFootMove());
+                        System.out.println("Движение по умолчанию: пешком");
+                }
+
+                System.out.println("Герой перемещается: ");
+                hero.move();
+                System.out.println(" ");
+            } catch (NumberFormatException e) {
+                System.out.println("Ошибка! Введите цифру!");
+                System.out.println(" ");
+            } catch (Exception e) {
+                System.out.println("Ошибка! Произошла непредвиденная ошибка!" + e.getMessage());
+                System.out.println(" ");
             }
-
-            System.out.println("Герой перемещается: ");
-            hero.move();
-            System.out.println(" ");
         }
         System.out.println("Игра закончена, до новых встреч!");
     }
